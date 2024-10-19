@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from crud_app.models import tbl_employee
 
 def create(request):
@@ -12,6 +12,13 @@ def create(request):
         print(qs.id, "print id here")
 
         if qs:
-            return render(request, "retrive.html")  
+            return redirect('retrieve')  
     else:
         return render(request, "create_emp.html")
+
+def reterive(request):
+    qs=tbl_employee.objects.all()
+    context={
+       'emp_data':qs
+    }
+    return render(request, "retrive.html",context)

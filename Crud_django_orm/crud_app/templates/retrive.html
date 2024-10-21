@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Employee List</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<div class="container">
-  <h2 class="btn-danger text-center">All Add Employee List</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Mobile Number</th>
-      </tr>
-    </thead>
-     <tbody>
-            {% for employee in emp_data %}
-                <tr>
-                    <td>{{ employee.name }}</td>     
-                    <td>{{ employee.email }}</td>   
-                    <td>{{ employee.mobile }}</td>   
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="2">No employees found.</td>  
-                </tr>
-            {% endfor %}
-        </tbody>     
-      
-    
-  </table>
-</div>
-
-</body>
+  <head>
+    <title>Employee List</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="btn-danger text-center">All Add Employee List</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for employee in emp_data %}
+          <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.mobile }}</td>
+            <td> 
+              <a href="{% url 'delete_emp' employee.id %}">
+              <i class="fa fa-trash-o" style="font-size: 48px; color: red"></i>
+              </a>
+            </td>
+              <td>
+                <a href="#"><i class="fa fa-edit" style="font-size: 48px; color: red"></i>
+            </a>
+            </td>
+             
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2">No employees found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>
-

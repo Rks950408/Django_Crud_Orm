@@ -22,3 +22,13 @@ def reterive(request):
        'emp_data':qs
     }
     return render(request, "retrive.html",context)
+
+def delete_emp(request, emp_id):
+    try:
+        # Try to retrieve and delete the employee object
+        employee = tbl_employee.objects.get(id=emp_id)
+        employee.delete()
+        return redirect('retrieve')  # Redirect to the retrieve page after deletion
+    except tbl_employee.DoesNotExist:
+        # Handle the case where the employee doesn't exist
+        return render(request, 'error.html', {'message': 'Employee not found'})
